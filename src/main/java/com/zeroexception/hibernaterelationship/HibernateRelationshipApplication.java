@@ -3,6 +3,7 @@ package com.zeroexception.hibernaterelationship;
 import com.zeroexception.hibernaterelationship.model.entity.Address;
 import com.zeroexception.hibernaterelationship.model.entity.Contact;
 import com.zeroexception.hibernaterelationship.model.entity.Student;
+import com.zeroexception.hibernaterelationship.repository.MachineTypeRepository;
 import com.zeroexception.hibernaterelationship.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,9 +22,19 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
 
     @Autowired
     private StudentRepository studentRepo;
+
+    @Autowired
+    private MachineTypeRepository machineTypeRepo;
+
     @Override
     public void run(String... args) throws Exception {
 
+        initStudents();
+
+        initMachines();
+    }
+
+    private void initStudents() {
         Address address = new Address()
                 .setAddressLine1("1000 Plano Road")
                 .setAddressLine2("apt 101")
@@ -61,6 +72,12 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
                 .setPreviousSchools(previousSchools);
 
 
-        this.studentRepo.save(student);
+        Student student1 = this.studentRepo.save(student);
+        System.out.println(student1.getId());
+    }
+
+    private void initMachines() {
+
+
     }
 }

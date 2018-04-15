@@ -5,5 +5,8 @@ package com.zeroexception.hibernaterelationship.model.entity;
  * on 4/14/18.
  * www.zeroexception.com
  */
+
+
 public class Staff {
+
 }
