@@ -3,6 +3,7 @@ package com.zeroexception.hibernaterelationship.model;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author Viet Quoc Tran vt
@@ -36,6 +37,14 @@ public class Student {
     })
     private Contact contact;
 
+    @Getter
+    @ElementCollection
+    @CollectionTable(name = "STUDENT_MAJOR",
+            joinColumns = @JoinColumn(name =  "STUDENT_ID"))
+    @Column(name = "MAJOR")
+    private Set<String> majors;
+
+
     public Student() {
     }
 
@@ -61,6 +70,11 @@ public class Student {
 
     public Student setContact(Contact contact) {
         this.contact = contact;
+        return this;
+    }
+
+    public Student setMajors(Set<String> majors) {
+        this.majors = majors;
         return this;
     }
 }

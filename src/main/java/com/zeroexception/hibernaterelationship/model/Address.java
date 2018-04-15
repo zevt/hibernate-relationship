@@ -14,29 +14,36 @@ import javax.persistence.Embeddable;
 public class Address {
     
     @Getter
-    private String streetAddress1;
+    private String addressLine1;
     @Getter
-    private String streetAddress2;
+    private String addressLine2;
     @Getter
     private String city;
+    @Getter
+    private String state;
     @Getter
     private String zip;
 
     public Address() {
     }
 
-    public Address setStreetAddress1(String streetAddress1) {
-        this.streetAddress1 = streetAddress1;
+    public Address setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
         return this;
     }
 
-    public Address setStreetAddress2(String streetAddress2) {
-        this.streetAddress2 = streetAddress2;
+    public Address setAddressLine2(String addressLine2) {
+        this.addressLine2 = addressLine2;
         return this;
     }
 
     public Address setCity(String city) {
         this.city = city;
+        return this;
+    }
+
+    public Address setState(String state) {
+        this.state = state;
         return this;
     }
 

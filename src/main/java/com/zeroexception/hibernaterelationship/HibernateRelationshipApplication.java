@@ -9,6 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @SpringBootApplication
 public class HibernateRelationshipApplication implements CommandLineRunner {
 
@@ -23,20 +26,27 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Address address = new Address()
-                .setStreetAddress1("1212 Plano road")
-                .setStreetAddress2("apt 101")
+                .setAddressLine1("1212 Plano road")
+                .setAddressLine2("apt 101")
                 .setCity("Plano")
+                .setState("Texas")
                 .setZip("75000");
 
         Contact contact = new Contact()
                 .setEmail("john@gmail.com")
                 .setPhoneNumber("123-456-7415");
 
+        Set<String> majors = new HashSet<>();
+        majors.add("Physics");
+        majors.add("Math");
+
         Student student = new Student()
                 .setFirstName("John")
                 .setLastName("Carpenter")
                 .setAddress(address)
-                .setContact(contact);
+                .setContact(contact)
+                .setMajors(majors);
+
 
         this.studentRepo.save(student);
     }
