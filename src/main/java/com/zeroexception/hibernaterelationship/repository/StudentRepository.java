@@ -1,6 +1,6 @@
 package com.zeroexception.hibernaterelationship.repository;
 
-import com.zeroexception.hibernaterelationship.model.Student;
+import com.zeroexception.hibernaterelationship.model.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

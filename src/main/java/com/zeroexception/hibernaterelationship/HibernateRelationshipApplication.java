@@ -1,18 +1,15 @@
 package com.zeroexception.hibernaterelationship;
 
-import com.zeroexception.hibernaterelationship.model.Address;
-import com.zeroexception.hibernaterelationship.model.Contact;
-import com.zeroexception.hibernaterelationship.model.Student;
+import com.zeroexception.hibernaterelationship.model.entity.Address;
+import com.zeroexception.hibernaterelationship.model.entity.Contact;
+import com.zeroexception.hibernaterelationship.model.entity.Student;
 import com.zeroexception.hibernaterelationship.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @SpringBootApplication
 public class HibernateRelationshipApplication implements CommandLineRunner {
@@ -28,11 +25,20 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         Address address = new Address()
-                .setAddressLine1("1212 Plano road")
+                .setAddressLine1("1000 Plano Road")
                 .setAddressLine2("apt 101")
                 .setCity("Plano")
                 .setState("Texas")
                 .setZip("75000");
+
+        List<Address> addresses = new LinkedList<>();
+        addresses.add(address);
+        address = new Address()
+                .setAddressLine1("2222 Preston Road")
+                .setCity("Plano")
+                .setState("Texas")
+                .setZip("75050");
+        addresses.add(address);
 
         Contact contact = new Contact()
                 .setEmail("john@gmail.com")
@@ -49,7 +55,7 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
         Student student = new Student()
                 .setFirstName("John")
                 .setLastName("Carpenter")
-                .setAddress(address)
+                .setAddresses(addresses)
                 .setContact(contact)
                 .setMajors(majors)
                 .setPreviousSchools(previousSchools);

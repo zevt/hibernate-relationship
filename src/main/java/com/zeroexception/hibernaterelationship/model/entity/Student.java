@@ -1,9 +1,10 @@
-package com.zeroexception.hibernaterelationship.model;
+package com.zeroexception.hibernaterelationship.model.entity;
 
 import lombok.Getter;
 
 import javax.persistence.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,15 +30,20 @@ public class Student {
 
     @Getter
     @Embedded
-    private Address address;
-
-    @Getter
-    @Embedded
     @AttributeOverrides({
             @AttributeOverride(name = "email", column = @Column(name = "EMAIL")),
             @AttributeOverride(name = "phoneNumber", column = @Column(name = "PHONE_NUMBER"))
     })
     private Contact contact;
+
+    @Getter
+    @ElementCollection
+    @CollectionTable(
+            name = "STUDENT_ADDRESS",
+            joinColumns = @JoinColumn(name = "STUDENT_ID")
+    )
+    private List<Address> addresses;
+
 
     @Getter
     @ElementCollection
@@ -51,7 +57,6 @@ public class Student {
     @CollectionTable(name = "PREVIOUS_SCHOOL",
         joinColumns = @JoinColumn(name = "STUDENT_ID")
     )
-
     @MapKeyColumn(name = "SCHOOL_NAME")
     @Column(name = "PREVIOUS_STUDENT_ID")
     private Map<String, String> previousSchools = new HashMap<>();
@@ -74,8 +79,8 @@ public class Student {
         return this;
     }
 
-    public Student setAddress(Address address) {
-        this.address = address;
+    public Student setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
         return this;
     }
 
@@ -93,4 +98,6 @@ public class Student {
         this.previousSchools = previousSchools;
         return this;
     }
+
+
 }

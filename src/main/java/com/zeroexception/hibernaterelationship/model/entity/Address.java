@@ -1,4 +1,4 @@
-package com.zeroexception.hibernaterelationship.model;
+package com.zeroexception.hibernaterelationship.model.entity;
 
 import lombok.Getter;
 
