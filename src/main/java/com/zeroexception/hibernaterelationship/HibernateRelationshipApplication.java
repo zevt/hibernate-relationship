@@ -9,7 +9,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @SpringBootApplication
@@ -40,12 +42,17 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
         majors.add("Physics");
         majors.add("Math");
 
+        Map<String, String> previousSchools = new HashMap<>();
+        previousSchools.put("UTD", "11");
+        previousSchools.put("UTA", "12");
+
         Student student = new Student()
                 .setFirstName("John")
                 .setLastName("Carpenter")
                 .setAddress(address)
                 .setContact(contact)
-                .setMajors(majors);
+                .setMajors(majors)
+                .setPreviousSchools(previousSchools);
 
 
         this.studentRepo.save(student);

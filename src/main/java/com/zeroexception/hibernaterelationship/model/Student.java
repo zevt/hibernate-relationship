@@ -3,6 +3,8 @@ package com.zeroexception.hibernaterelationship.model;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -44,6 +46,15 @@ public class Student {
     @Column(name = "MAJOR")
     private Set<String> majors;
 
+    @Getter
+    @ElementCollection
+    @CollectionTable(name = "PREVIOUS_SCHOOL",
+        joinColumns = @JoinColumn(name = "STUDENT_ID")
+    )
+
+    @MapKeyColumn(name = "SCHOOL_NAME")
+    @Column(name = "PREVIOUS_STUDENT_ID")
+    private Map<String, String> previousSchools = new HashMap<>();
 
     public Student() {
     }
@@ -75,6 +86,11 @@ public class Student {
 
     public Student setMajors(Set<String> majors) {
         this.majors = majors;
+        return this;
+    }
+
+    public Student setPreviousSchools(Map<String, String> previousSchools) {
+        this.previousSchools = previousSchools;
         return this;
     }
 }
