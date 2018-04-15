@@ -27,7 +27,7 @@ public class MachineType {
     
     @Getter
     @ElementCollection
-    @CollectionTable(name = "Variable",
+    @CollectionTable(name = "tb_VARIABLE",
         joinColumns = @JoinColumn(name = "MACHINE_TYPE_ID")
     )
     @MapKeyColumn(name = "VARIABLE_NAME")

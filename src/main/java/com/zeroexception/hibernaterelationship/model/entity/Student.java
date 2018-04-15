@@ -39,7 +39,7 @@ public class Student {
     @Getter
     @ElementCollection
     @CollectionTable(
-            name = "STUDENT_ADDRESS",
+            name = "tb_STUDENT_ADDRESS",
             joinColumns = @JoinColumn(name = "STUDENT_ID")
     )
     private List<Address> addresses;
@@ -47,14 +47,14 @@ public class Student {
 
     @Getter
     @ElementCollection
-    @CollectionTable(name = "STUDENT_MAJOR",
+    @CollectionTable(name = "tb_STUDENT_MAJOR",
             joinColumns = @JoinColumn(name =  "STUDENT_ID"))
     @Column(name = "MAJOR")
     private Set<String> majors;
 
     @Getter
     @ElementCollection
-    @CollectionTable(name = "PREVIOUS_SCHOOL",
+    @CollectionTable(name = "tb_PREVIOUS_SCHOOL",
         joinColumns = @JoinColumn(name = "STUDENT_ID")
     )
     @MapKeyColumn(name = "SCHOOL_NAME")
