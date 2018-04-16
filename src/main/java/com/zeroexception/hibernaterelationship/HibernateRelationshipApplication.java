@@ -2,8 +2,10 @@ package com.zeroexception.hibernaterelationship;
 
 import com.zeroexception.hibernaterelationship.model.entity.Address;
 import com.zeroexception.hibernaterelationship.model.entity.Contact;
+import com.zeroexception.hibernaterelationship.model.entity.Parental;
 import com.zeroexception.hibernaterelationship.model.entity.Student;
 import com.zeroexception.hibernaterelationship.repository.MachineTypeRepository;
+import com.zeroexception.hibernaterelationship.repository.ParentalRepository;
 import com.zeroexception.hibernaterelationship.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -25,6 +27,9 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
 
     @Autowired
     private MachineTypeRepository machineTypeRepo;
+
+    @Autowired
+    private ParentalRepository parentalRepo;
 
     @Override
     public void run(String... args) throws Exception {
@@ -63,12 +68,18 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
         previousSchools.put("UTD", "11");
         previousSchools.put("UTA", "12");
 
+        Parental parental = new Parental()
+                .setFatherName("Peter Carpenter");
+
+//        parental = this.parentalRepo.save(parental);
+
         Student student = new Student()
                 .setFirstName("John")
                 .setLastName("Carpenter")
                 .setAddresses(addresses)
                 .setContact(contact)
                 .setMajors(majors)
+                .setParental(parental)
                 .setPreviousSchools(previousSchools);
 
 

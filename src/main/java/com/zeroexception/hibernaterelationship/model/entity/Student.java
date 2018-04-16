@@ -1,5 +1,8 @@
 package com.zeroexception.hibernaterelationship.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -9,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author Viet Quoc Tran vt
+ * @author Viet Quoc Tran
  * on 4/14/18.
  * www.zeroexception.com
  */
@@ -17,11 +20,14 @@ import java.util.Set;
 
 @Entity
 @Table(name = "tb_STUDENT")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Student {
 
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("id")
     private Long id;
     @Getter
     private String firstName;
@@ -61,6 +67,12 @@ public class Student {
     @Column(name = "PREVIOUS_STUDENT_ID")
     private Map<String, String> previousSchools = new HashMap<>();
 
+
+    @Getter
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "PARENTAL_ID")
+    private Parental parental;
+
     public Student() {
     }
 
@@ -99,5 +111,8 @@ public class Student {
         return this;
     }
 
-
+    public Student setParental(Parental parental) {
+        this.parental = parental;
+        return this;
+    }
 }
