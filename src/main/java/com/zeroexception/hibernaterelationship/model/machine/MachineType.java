@@ -46,7 +46,6 @@ public class MachineType {
         return this;
     }
 
-
     public MachineType setVariableMap(Map<String, Variable> variableMap) {
         this.variableMap = variableMap;
         return this;

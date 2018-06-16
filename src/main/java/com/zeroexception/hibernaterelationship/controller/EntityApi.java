@@ -51,7 +51,6 @@ public class EntityApi {
                 .setFatherName(parental.getFatherName());
         student.setParental(parental1);
 
-
         return new ResponseEntity<>(student, HttpStatus.ACCEPTED);
     }
 
