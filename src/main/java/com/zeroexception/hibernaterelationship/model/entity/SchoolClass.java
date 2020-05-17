@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Table;
 
 /**
- * @author Viet Quoc Tran vt
+ * @author Viet Quoc Tran
  * on 4/14/18.
  * www.zeroexception.com
  */
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "tb_CLASS")
-public class Class {
+public class SchoolClass {
 
     @Getter
     @javax.persistence.Id
@@ -30,25 +30,25 @@ public class Class {
 //    @Getter
 //    private List<Student> students;
 
-    public Class() {
+    public SchoolClass() {
     }
 
-    public Class setId(Long id) {
+    public SchoolClass setId(Long id) {
         Id = id;
         return this;
     }
 
-    public Class setSubject(String subject) {
+    public SchoolClass setSubject(String subject) {
         this.subject = subject;
         return this;
     }
 
-//    public Class setLecturer(Lecturer lecturer) {
+//    public SchoolClass setLecturer(Lecturer lecturer) {
 //        this.lecturer = lecturer;
 //        return this;
 //    }
 
-//    public Class setStudents(List<Student> students) {
+//    public SchoolClass setStudents(List<Student> students) {
 //        this.students = students;
 //        return this;
 //    }

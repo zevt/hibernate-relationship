@@ -5,7 +5,7 @@ import lombok.Getter;
 import javax.persistence.Embeddable;
 
 /**
- * @author Viet Quoc Tran vt
+ * @author Viet Quoc Tran
  * on 4/14/18.
  * www.zeroexception.com
  */
