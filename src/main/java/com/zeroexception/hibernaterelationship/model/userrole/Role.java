@@ -14,4 +14,7 @@ public class Role {
   @Id
   private String roleName;
 
+//  @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+//  private Set<User> users = new HashSet<>();
+
 }

@@ -4,17 +4,23 @@ import com.zeroexception.hibernaterelationship.model.entity.Address;
 import com.zeroexception.hibernaterelationship.model.entity.Contact;
 import com.zeroexception.hibernaterelationship.model.entity.Parental;
 import com.zeroexception.hibernaterelationship.model.entity.Student;
+import com.zeroexception.hibernaterelationship.model.userrole.Role;
 import com.zeroexception.hibernaterelationship.model.userrole.User;
 import com.zeroexception.hibernaterelationship.repository.MachineTypeRepository;
 import com.zeroexception.hibernaterelationship.repository.ParentalRepository;
+import com.zeroexception.hibernaterelationship.repository.RoleRepository;
 import com.zeroexception.hibernaterelationship.repository.StudentRepository;
 import com.zeroexception.hibernaterelationship.repository.UserRepository;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.*;
 
 @SpringBootApplication
 public class HibernateRelationshipApplication implements CommandLineRunner {
@@ -23,6 +29,7 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
   @Autowired private MachineTypeRepository machineTypeRepo;
   @Autowired private ParentalRepository parentalRepo;
   @Autowired private UserRepository userRepo;
+  @Autowired private RoleRepository roleRepo;
 
   public static void main(String[] args) {
     SpringApplication.run(HibernateRelationshipApplication.class, args);
@@ -87,6 +94,17 @@ public class HibernateRelationshipApplication implements CommandLineRunner {
 
   private void initUser() {
     User user = new User();
+    user.setName("Joe");
+
+    Role role = roleRepo.findById("ADMIN").get();
+
+    user.getRoles().add(role);
+    this.userRepo.save(user);
+
+    role = roleRepo.findById("USER").get();
+    user = userRepo.findById(user.getId()).get();
+    user.getRoles().add(role);
+
     this.userRepo.save(user);
   }
 }
